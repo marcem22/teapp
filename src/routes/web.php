@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::middleware('permission:see-panel')->group(function () {
