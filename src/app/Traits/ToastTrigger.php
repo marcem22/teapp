@@ -76,4 +76,7 @@ trait ToastTrigger
     ) {
         $this->_toast($message, $duration, $name, true);
     }
+    public function alert(string $message) {
+        $this->_toast($message, 100000, "alert");
+    }
 }

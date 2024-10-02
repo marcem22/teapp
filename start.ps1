@@ -16,3 +16,7 @@ $artisan = Start-Process -FilePath "powershell.exe" -ArgumentList "-Command", "p
 # Save the process IDs to a file
 $processes = @($vite.Id, $artisan.Id)
 $processes | Out-File .\processes.txt
+if ($args -contains '-r') {
+    Remove-Item database/database.sqlite -ErrorAction SilentlyContinue
+    php artisan migrate --force --seed
+}
