@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contador</title>
-    @vite('resources/css/app.css') <!-- Cargar los estilos de Tailwind CSS -->
-</head>
-
-<body class="font-sans antialiased bg-purple-600 ">
-    <main class="container mx-auto px-4 py-8 opacity-0 transition-opacity duration-500" id="main-content">
+<x-event-layout>
+    <x-slot name="header">
         <h1 class="text-4xl font-bold mb-6 text-center text-gradient">Contador</h1>
+    </x-slot>
+
+    <main class="container mx-auto px-4 py-8 opacity-0 transition-opacity duration-500" id="main-content">
+        <!-- Número mostrado en el centro -->
         <div class="flex flex-col items-center space-y-8">
             <span class="text-8xl font-bold text-black-600">{{ $número }}</span>
 
-            <!-- Botones en un contenedor con sombra -->
+            <!-- Botones con estilos personalizados -->
             <div class="flex space-x-8">
                 <x-button class="bg-green-500 hover:bg-green-600 transition duration-300"
                     onclick="location.href='{{ route('contador.inc', ['número' => $número]) }}'">
@@ -50,6 +44,4 @@
             document.getElementById('main-content').classList.add('opacity-100');
         });
     </script>
-</body>
-
-</html>
+</x-event-layout>

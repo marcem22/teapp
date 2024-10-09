@@ -236,7 +236,8 @@
                             <div class="text-center mt-6"> <!-- Aumentamos el margen superior aquí -->
                                 <a href="/learn-more"
                                     class="bg-[#9ABB50] text-black py-2 px-20 rounded-lg text-lg hover:bg-teal-600 transition duration-300">Aprende
-                                    Más</a> <!-- Aumentamos el padding horizontal aquí -->
+                                    Más
+                                </a> <!-- Aumentamos el padding horizontal aquí -->
                             </div>
                         </div>
                     </div>

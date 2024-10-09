@@ -9,6 +9,8 @@ export default {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/**/*.js',
+        './resources/**/*.vue', // Si usas Vue.js
     ],
 
     theme: {
@@ -20,4 +22,6 @@ export default {
     },
 
     plugins: [forms, typography],
+    darkMode: 'class', // O 'media' si prefieres que dependa de los ajustes del sistema
+
 };

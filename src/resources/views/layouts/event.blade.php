@@ -1,14 +1,12 @@
-<x-event-layout>
+<x-app-layout>
     <x-slot name="title">
-        <h2 class="font-bold text-lg text-gray-800 dark:text-gray-200 leading-tight">
-            {{ $title }}
-        </h2>
+        {{ $title }} <!-- Solo el texto aquí -->
     </x-slot>
-
     <x-event-listener />
 
     <div class="p-3 relative">
-        <div class="absolute top-2 w-2/4 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center text-xl font-extrabold text-center text-white">
+        <div
+            class="absolute top-2 w-2/4 left-1/2 transform -translate-x-1/2 z-50 items-center justify-center text-xl font-extrabold text-center text-white">
 
             <x-toast name="alert">
                 <div class="bg-slate-400 shadow-lg p-6 border border-red-400 rounded-md">
@@ -46,4 +44,4 @@
         </div>
         {{ $slot }}
     </div>
-</x-event-layout>
+</x-app-layout>
