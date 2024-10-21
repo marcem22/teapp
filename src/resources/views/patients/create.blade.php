@@ -3,31 +3,18 @@
         {{ __('Nuevo Paciente') }}
     </x-slot>
 
-    <!-- Bloque para mostrar errores globales -->
-    @if ($errors->any())
-        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
-            <p class="font-bold">{{ __('Hay algunos problemas con tu entrada.') }}</p>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-    <x-validation-errors class="mb-4" />
 
     <div class="max-w-7xl mx-auto p-6 bg-gray-50 shadow-md rounded-lg mt-4">
         <h1 class="text-2xl font-bold text-[#1E1E49] mb-4">{{ __('Nuevo Paciente') }}</h1>
-
-        <form action="{{ route('patients.store') }}" method="POST" class="space-y-4" novalidate>
+        <x-validation-errors class="mb-4" />
+        <form action="{{ route('patients.store') }}" method="POST" class="space-y-4" >
             @csrf
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <!-- Código -->
                 <div>
                     <x-label for="codigo" :value="__('Código')" />
-                    <x-input id="codigo" class="block mt-1 w-full" type="text" name="codigo" :value="old('codigo')" required autofocus />
+                    <x-input id="codigo" class="block mt-1 w-full" type="text" name="codigo" :value="old('codigo')" required autofocus autocomplete="codigo" />
                     <x-input-error for="codigo" class="mt-2" />
                 </div>
 

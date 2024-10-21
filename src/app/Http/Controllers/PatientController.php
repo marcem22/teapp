@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Traits\ToastTrigger;
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
+
 
 class PatientController extends Controller
 {
-    public function index(): View
+    use ToastTrigger;
+    public function index()
     {
         $patients = Patient::paginate(5); // Carga 5 pacientes por página
         $title = 'Listado de Pacientes';  // Definir el título que quieres mostrar
@@ -17,31 +18,31 @@ class PatientController extends Controller
     }
 
 
-    public function create(): View
+    public function create()
     {
         $title = 'Nuevo Paciente';
         return view('patients.create', compact('title'));
-    }public function store(PatientRequest $request)
+    }
+    public function store(PatientRequest $request)
     {
-        // Los datos ya están validados
+        // Los datos ya están validados en este punto
         $validatedData = $request->validated();
 
-        // Crear un nuevo paciente
+        // Crear un nuevo paciente con los datos validados
         $patient = new Patient($validatedData);
         $patient->save();
 
-        // Redirigir con mensaje de éxito
+        // Redirigir o devolver una respuesta
         return redirect()->route('patients.index')->with('success', 'Paciente creado exitosamente.');
     }
 
 
-    public function show(Patient $patient): View
+    public function show(Patient $patient)
     {
         $title = 'Detalle';
         return view('patients.show', compact('patient', 'title'));
     }
-
-    public function edit(Patient $patient): View
+    public function edit(Patient $patient)
     {
         $title = 'Modificar Datos';
         return view('patients.edit', compact('patient', 'title'));

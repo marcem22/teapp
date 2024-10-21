@@ -84,6 +84,20 @@
                         <x-slot name="content">
                             <div class="bg-white text-gray-800">
                                 <!-- ... contenido del dropdown sin cambios ... -->
+                                <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    {{ __('Perfil') }}
+                                </a>
+
+                                <!-- Opción de cerrar sesión -->
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a href="{{ route('logout') }}"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                    onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                        {{ __('Cerrar sesión') }}
+                                    </a>
+                                </form>
                             </div>
                         </x-slot>
                     </x-dropdown>

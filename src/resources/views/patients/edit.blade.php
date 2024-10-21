@@ -1,89 +1,121 @@
 <x-crud-layout>
-    <x-slot name="title">Editar Paciente</x-slot>
+    <x-slot name="title">
+        {{ __('Nuevo Paciente') }}
+    </x-slot>
 
-    <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
-        <h1 class="text-2xl font-bold text-[#1E1E49] mb-6">{{ $title }}</h1>
-
-        <form action="{{ route('patients.update', $patient) }}" method="POST" class="space-y-4">
+    <div class="max-w-7xl mx-auto p-6 bg-gray-50 shadow-md rounded-lg mt-4">
+        <h1 class="text-2xl font-bold text-[#1E1E49] mb-4">{{ __('Nuevo Paciente') }}</h1>
+        <x-validation-errors class="mb-4" />
+        <form action="{{ route('patients.store') }}" method="POST" class="space-y-4">
             @csrf
-            @method('PUT')
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Código -->
                 <div>
-                    <label for="codigo" class="block text-sm font-medium text-[#042940]">Código</label>
-                    <input type="text" name="codigo" value="{{ $patient->codigo }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="codigo" :value="__('Código')" />
+                    <x-input id="codigo" class="block mt-1 w-full" type="text" name="codigo" :value="old('codigo')" required autofocus autocomplete="codigo" />
+                    <x-input-error for="codigo" class="mt-2" />
                 </div>
 
+                <!-- Apellidos -->
                 <div>
-                    <label for="apellidos" class="block text-sm font-medium text-[#042940]">Apellidos</label>
-                    <input type="text" name="apellidos" value="{{ $patient->apellidos }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="apellidos" :value="__('Apellidos')" />
+                    <x-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required />
+                    <x-input-error for="apellidos" class="mt-2" />
                 </div>
 
+                <!-- Nombres -->
                 <div>
-                    <label for="nombres" class="block text-sm font-medium text-[#042940]">Nombres</label>
-                    <input type="text" name="nombres" value="{{ $patient->nombres }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="nombres" :value="__('Nombres')" />
+                    <x-input id="nombres" class="block mt-1 w-full" type="text" name="nombres" :value="old('nombres')" required />
+                    <x-input-error for="nombres" class="mt-2" />
                 </div>
 
+                <!-- DNI -->
                 <div>
-                    <label for="dni" class="block text-sm font-medium text-[#042940]">DNI</label>
-                    <input type="text" name="dni" value="{{ $patient->dni }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="dni" :value="__('DNI')" />
+                    <x-input id="dni" class="block mt-1 w-full" type="text" name="dni" :value="old('dni')" required />
+                    <x-input-error for="dni" class="mt-2" />
                 </div>
 
+                <!-- Fecha de nacimiento -->
                 <div>
-                    <label for="nacimiento" class="block text-sm font-medium text-[#042940]">Fecha de nacimiento</label>
-                    <input type="date" name="nacimiento" value="{{ $patient->nacimiento }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="nacimiento" :value="__('Fecha de nacimiento')" />
+                    <x-input id="nacimiento" class="block mt-1 w-full" type="date" name="nacimiento" :value="old('nacimiento')" required />
+                    <x-input-error for="nacimiento" class="mt-2" />
                 </div>
 
+                <!-- Sexo -->
                 <div>
-                    <label for="sexo" class="block text-sm font-medium text-[#042940]">Sexo</label>
-                    <select name="sexo" required
-                            class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
-                        <option value="M" @if ($patient->sexo == 'M') selected @endif>Masculino</option>
-                        <option value="F" @if ($patient->sexo == 'F') selected @endif>Femenino</option>
+                    <x-label for="sexo" :value="__('Sexo')" />
+                    <select name="sexo" required class="block mt-1 w-full">
+                        <option value="" disabled {{ old('sexo') == '' ? 'selected' : '' }}>Seleccionar...</option>
+                        <option value="M" {{ old('sexo') == 'M' ? 'selected' : '' }}>Masculino</option>
+                        <option value="F" {{ old('sexo') == 'F' ? 'selected' : '' }}>Femenino</option>
                     </select>
+                    <x-input-error for="sexo" class="mt-2" />
                 </div>
 
+                <!-- Teléfono -->
                 <div>
-                    <label for="telefono" class="block text-sm font-medium text-[#042940]">Teléfono</label>
-                    <input type="text" name="telefono" value="{{ $patient->telefono }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="telefono" :value="__('Teléfono')" />
+                    <x-input id="telefono" class="block mt-1 w-full" type="text" name="telefono" :value="old('telefono')" required />
+                    <x-input-error for="telefono" class="mt-2" />
                 </div>
 
+                <!-- Email -->
                 <div>
-                    <label for="email" class="block text-sm font-medium text-[#042940]">Email</label>
-                    <input type="email" name="email" value="{{ $patient->email }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="email" :value="__('Email')" />
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                    <x-input-error for="email" class="mt-2" />
                 </div>
 
+                <!-- Dirección -->
                 <div>
-                    <label for="direccion" class="block text-sm font-medium text-[#042940]">Dirección</label>
-                    <input type="text" name="direccion" value="{{ $patient->direccion }}" required
-                           class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">
+                    <x-label for="direccion" :value="__('Dirección')" />
+                    <x-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" :value="old('direccion')" required />
+                    <x-input-error for="direccion" class="mt-2" />
                 </div>
 
+                <!-- Observaciones -->
                 <div class="col-span-2">
-                    <label for="observaciones" class="block text-sm font-medium text-[#042940]">Observaciones</label>
-                    <textarea name="observaciones" rows="4"
-                              class="mt-1 p-2 border border-gray-300 rounded w-full focus:outline-none focus:ring-2 focus:ring-[#0075B2]">{{ $patient->observaciones }}</textarea>
+                    <x-label for="observaciones" :value="__('Observaciones')" />
+                    <textarea name="observaciones" rows="4" class="block mt-1 w-full">{{ old('observaciones') }}</textarea>
                 </div>
             </div>
 
-            <div class="flex justify-end">
-                <button type="submit" class="bg-[#0075B2] text-white px-4 py-2 rounded hover:bg-[#005C53] transition duration-200">
-                    Guardar
-                </button>
+            <div class="flex justify-end space-x-4 mt-6">
+                <x-button type="submit" class="bg-[#0075B2] hover:bg-[#005C53]">
+                    {{ __('Guardar') }}
+                </x-button>
+                <x-button href="{{ route('patients.index') }}" class="bg-gray-300 text-[#1E1E49] hover:bg-gray-400">
+                    {{ __('Volver') }}
+                </x-button>
             </div>
         </form>
     </div>
 
     <style>
+        body {
+            background-color: #f0f4f8;
+        }
+
         .max-w-7xl {
             max-width: 80rem;
         }
+
+        .x-button {
+            transition: all 0.2s ease-in-out;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            text-align: center;
+            width: 6rem;
+        }
+
+        .x-button:hover {
+            transform: scale(1.05);
+        }
+
     </style>
 </x-crud-layout>

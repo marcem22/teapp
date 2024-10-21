@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContadorController;
@@ -59,7 +60,5 @@ Route::middleware('permission:see-panel')->group(function () {
     Route::resource('users', UserController::class);
 });
 Route::resource('patients', PatientController::class)->middleware('auth');
-
-
 Route::resource('activities', ActivityController::class);
 Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
