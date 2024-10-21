@@ -28,6 +28,11 @@
                         class="nav-link text-gray-800 hover:text-[#D6D58E] hover:bg-gray-100 transition duration-300 ease-in-out px-6 py-4 rounded-md text-lg font-semibold {{ request()->routeIs('patients.index') ? 'border-b-4 border-[#0075B2]' : '' }}">
                         {{ __('Pacientes') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('activities.index') }}" :active="request()->routeIs('activities.index')"
+                        class="nav-link text-gray-800 hover:text-[#D6D58E] hover:bg-gray-100 transition duration-300 ease-in-out px-6 py-4 rounded-md text-lg font-semibold {{ request()->routeIs('activities.index') ? 'border-b-4 border-[#0075B2]' : '' }}">
+                        {{ __('Actividades') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -104,6 +109,11 @@
                 class="text-gray-800 hover:text-[#D6D58E] hover:bg-gray-100 px-6 py-4 rounded-md block text-lg font-semibold">
                 {{ __('Inicio') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('activities.index') }}" :active="request()->routeIs('activities.index')"
+                class="text-gray-800 hover:text-[#D6D58E] hover:bg-gray-100 px-6 py-4 rounded-md block text-lg font-semibold">
+                {{ __('Actividades') }}
+            </x-responsive-nav-link>
+
             <!-- ... otros enlaces responsivos con los mismos ajustes ... -->
         </div>
 

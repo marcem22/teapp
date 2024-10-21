@@ -1,4 +1,4 @@
-<x-event-layout>
+<x-crud-layout>
     <x-slot name="title">Detalles del Paciente</x-slot>
 
     <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
@@ -102,4 +102,4 @@
             transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
         }
     </style>
-</x-event-layout>
+</x-crud-layout>

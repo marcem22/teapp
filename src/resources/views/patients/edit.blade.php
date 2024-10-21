@@ -1,4 +1,4 @@
-<x-event-layout>
+<x-crud-layout>
     <x-slot name="title">Editar Paciente</x-slot>
 
     <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
@@ -86,4 +86,4 @@
             max-width: 80rem;
         }
     </style>
-</x-event-layout>
+</x-crud-layout>

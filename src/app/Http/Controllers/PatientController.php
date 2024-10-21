@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -18,37 +19,32 @@ class PatientController extends Controller
 
     public function create(): View
     {
-        $title= 'Nuevo Paciente';
-        return view('patients.create',compact('title'));
+        $title = 'Nuevo Paciente';
+        return view('patients.create', compact('title'));
+    }public function store(PatientRequest $request)
+    {
+        // Los datos ya están validados
+        $validatedData = $request->validated();
+
+        // Crear un nuevo paciente
+        $patient = new Patient($validatedData);
+        $patient->save();
+
+        // Redirigir con mensaje de éxito
+        return redirect()->route('patients.index')->with('success', 'Paciente creado exitosamente.');
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'codigo' => 'required|unique:patients',
-            'apellidos' => 'required',
-            'nombres' => 'required',
-            'dni' => 'required|unique:patients',
-            'nacimiento' => 'required|date',
-            'sexo' => 'required',
-            'telefono' => 'required',
-            'email' => 'required|email|unique:patients',
-            'direccion' => 'required',
-        ]);
-        Patient::create($request->all());
-        return redirect()->route('patients.index');
-    }
 
     public function show(Patient $patient): View
     {
-        $title='Detalle';
-        return view('patients.show', compact('patient','title'));
+        $title = 'Detalle';
+        return view('patients.show', compact('patient', 'title'));
     }
 
     public function edit(Patient $patient): View
     {
-        $title='Modificar Datos';
-        return view('patients.edit', compact('patient','title'));
+        $title = 'Modificar Datos';
+        return view('patients.edit', compact('patient', 'title'));
     }
 
     public function update(Request $request, Patient $patient)

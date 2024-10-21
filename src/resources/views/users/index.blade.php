@@ -1,49 +1,49 @@
-<x-event-layout>
+<x-crud-layout>
     <x-slot name="title">
-        {{ __('Users Manager') }}
+        {{ __('Gestor de Usuarios') }}
     </x-slot>
 
-    <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4 roles-container">
-        <h1 class="page-title text-2xl font-bold text-[#1E1E49] mb-4">{{ __('Users Manager') }}</h1>
+    <div class="max-w-7xl mx-auto p-6 bg-white shadow-md rounded-lg mt-4">
+        <h1 class="text-2xl font-bold text-[#1E1E49] mb-4">{{ __('Gestor de Usuarios') }}</h1>
 
         <div class="flex justify-end mb-4">
             <a href="{{ route('users.create') }}"
-                class="new-role-btn inline-block bg-[#0075B2] text-white py-2 px-4 rounded hover:bg-[#005C53] transition duration-200">
-                New User
+                class="inline-block bg-[#0075B2] text-white py-2 px-4 rounded hover:bg-[#005C53] transition duration-200">
+                Nuevo Usuario
             </a>
         </div>
 
         <div class="overflow-x-auto">
-            <table class="roles-table min-w-full bg-white border border-gray-300 rounded-lg mb-4">
+            <table class="min-w-full bg-white border border-gray-300 rounded-lg mb-4">
                 <thead class="bg-[#1E1E49] text-white">
                     <tr>
-                        <th class="py-2 px-4 border-b text-left w-1/3">Nombre</th>
-                        <th class="py-2 px-4 border-b text-left w-1/3">Email</th>
-                        <th class="py-2 px-4 border-b text-left w-1/3">Roles</th>
-                        <th class="py-2 px-4 border-b text-left w-1/3">Acciones</th>
+                        <th class="py-3 px-4 text-left">Nombre</th>
+                        <th class="py-3 px-4 text-left">Email</th>
+                        <th class="py-3 px-4 text-left">Roles</th>
+                        <th class="py-3 px-4 text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $key => $user)
                         <tr class="{{ $key % 2 === 0 ? 'bg-gray-100' : 'bg-white' }} hover:bg-gray-200">
-                            <td class="py-2 px-4 border-b whitespace-nowrap text-sm font-medium text-gray-900">
+                            <td class="py-2 px-4 border-t whitespace-nowrap text-sm font-medium text-gray-900">
                                 {{ $user->name }}
                             </td>
-                            <td class="py-2 px-4 border-b whitespace-nowrap text-sm text-gray-500">
+                            <td class="py-2 px-4 border-t whitespace-nowrap text-sm text-gray-500">
                                 {{ $user->email }}
                             </td>
-                            <td class="py-2 px-4 border-b whitespace-nowrap text-sm text-gray-500">
+                            <td class="py-2 px-4 border-t whitespace-nowrap text-sm text-gray-500">
                                 @if (!empty($user->getRoleNames()))
                                     @foreach ($user->getRoleNames() as $v)
                                         <label class="badge badge-secondary text-dark">{{ $v }}</label>
                                     @endforeach
                                 @endif
                             </td>
-                            <td class="py-2 px-4 border-b whitespace-nowrap text-sm text-gray-500">
+                            <td class="py-2 px-4 border-t whitespace-nowrap text-sm text-gray-500">
                                 <div class="flex items-center space-x-2">
                                     <a href="{{ route('users.show', $user->id) }}"
                                         class="action-btn view-btn bg-[#A7D3E0] text-[#1E1E49] py-1 px-2 rounded hover:bg-[#9ABB50] inline-flex items-center justify-center w-8 h-8"
-                                        title="View">
+                                        title="Ver">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -54,7 +54,7 @@
                                     </a>
                                     <a href="{{ route('users.edit', $user->id) }}"
                                         class="action-btn edit-btn bg-[#EA9423] text-white py-1 px-2 rounded hover:bg-[#0075B2] inline-flex items-center justify-center w-8 h-8"
-                                        title="Edit">
+                                        title="Editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -66,7 +66,7 @@
                                         @method('DELETE')
                                         <button type="submit"
                                             class="delete-btn bg-red-600 text-white py-1 px-2 rounded hover:bg-red-700 inline-flex items-center justify-center w-8 h-8"
-                                            title="Delete">
+                                            title="Eliminar">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -80,13 +80,13 @@
                     @endforeach
                 </tbody>
             </table>
-
         </div>
 
-        <div class="flex justify-end mt-4 pagination">
+        <x-slot name="links">
             {{ $data->links() }}
-        </div>
+        </x-slot>
     </div>
+
     <style>
         .roles-container {
             padding: 1.5rem;
@@ -99,7 +99,6 @@
         .new-role-btn {
             text-decoration: none;
         }
-
 
         .roles-table tbody tr:hover {
             background-color: #f8f9fa;
@@ -127,7 +126,6 @@
         .action-btn,
         .delete-btn {
             transition: all 0.2s ease-in-out;
-            text-decoration: none;
         }
 
         .action-btn:hover,
@@ -144,5 +142,4 @@
             margin-right: 0.5rem;
         }
     </style>
-
-</x-event-layout>
+</x-crud-layout>

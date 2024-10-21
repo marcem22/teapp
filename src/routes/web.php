@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\ActivityController;
 
 
 Route::get('/contador', [ContadorController::class,'index'])->name('contador');
@@ -58,3 +59,7 @@ Route::middleware('permission:see-panel')->group(function () {
     Route::resource('users', UserController::class);
 });
 Route::resource('patients', PatientController::class)->middleware('auth');
+
+
+Route::resource('activities', ActivityController::class);
+Route::get('/activities', [ActivityController::class, 'index'])->name('activities.index');
