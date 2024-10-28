@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Traits\ToastTrigger;
 use App\Http\Requests\PatientRequest;
 use App\Models\Patient;
 use Illuminate\Http\Request;
@@ -9,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PatientController extends Controller
 {
-    use ToastTrigger;
+
     public function index()
     {
         $patients = Patient::paginate(5); // Carga 5 pacientes por página

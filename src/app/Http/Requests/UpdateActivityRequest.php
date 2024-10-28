@@ -1,28 +1,29 @@
 <?php
-
 namespace App\Http\Requests;
 
+use App\Traits\ToastTrigger;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class UpdateActivityRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    use ToastTrigger;
+    public function authorize()
     {
-        return false;
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
+{
+    return [
+        'name' => ['required', 'string', 'max:255'],
+        'description' => ['required', 'string'],
+        'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+    ];
+}
+protected function failedValidation(Validator $validator)
     {
-        return [
-            //
-        ];
+        $this->errorToast($validator->errors()->first());
+        parent::failedValidation($validator);
     }
 }

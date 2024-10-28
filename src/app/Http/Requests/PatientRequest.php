@@ -31,14 +31,20 @@ class PatientRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'codigo.required' => 'El código es obligatorio.',
+            'codigo.required' => 'El campo código es obligatorio.',
             'codigo.unique' => 'El código ya está en uso.',
-            'dni.required' => 'El DNI es obligatorio.',
+            'apellidos.required' => 'El campo apellidos es obligatorio.',
+            'nombres.required' => 'El campo nombres es obligatorio.',
+            'dni.required' => 'El campo DNI es obligatorio.',
             'dni.unique' => 'El DNI ya está en uso.',
-            'email.required' => 'El correo electrónico es obligatorio.',
-            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'nacimiento.required' => 'El campo fecha de nacimiento es obligatorio.',
+            'nacimiento.date' => 'El campo fecha de nacimiento debe ser una fecha válida.',
+            'sexo.required' => 'El campo sexo es obligatorio.',
+            'telefono.required' => 'El campo teléfono es obligatorio.',
+            'email.required' => 'El campo correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección de correo válida.',
             'email.unique' => 'El correo electrónico ya está en uso.',
-
+            'direccion.required' => 'El campo dirección es obligatorio.',
         ];
     }
 }

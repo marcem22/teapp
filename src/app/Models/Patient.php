@@ -18,6 +18,7 @@ class Patient extends Model
         'telefono',
         'email',
         'direccion',
-        
+        'observaciones',
+
     ];
 }
